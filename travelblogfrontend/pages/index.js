@@ -18,7 +18,7 @@ const Home = ({posts}) => {
                 {posts?.map(post => (
                     <Link
                         key={post.id}
-                        href="/travelblogfrontend/components/posts/[slug]"
+                        href="/posts/[slug]"
                         as={`/posts/${post.slug.current}`}
                         passHref
                     >

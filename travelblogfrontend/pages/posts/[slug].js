@@ -1,27 +1,25 @@
 import groq from 'groq'
-import Tag from '../Tag'
+import Tag from '../../components/Tag'
 import {PortableText} from '@portabletext/react'
 import {urlFor} from '../../lib/sanity'
 import {getClient} from '../../lib/sanity.server'
-import Map from '../Map'
-import Image from 'next/image'
+import Map from '../../components/Map'
 
 const PostComponents = {
     types: {
         image: ({value = undefined}) => {
             return (
-                <Image
+                <img
                     className={'post-image'}
                     alt={value.alt || ' '}
                     src={urlFor(value).width(600).url()}
-                    layout={'fill'}
                 />
             )
         }
     }
 }
 
-const ColoredLine = ({ color = undefined }) => (
+const ColoredLine = ({color = undefined}) => (
     <hr
         style={{
             color: color,
@@ -31,11 +29,21 @@ const ColoredLine = ({ color = undefined }) => (
     />
 );
 
-const post = ({post = undefined}) => {
+const fakePost = {
+    tittle: '',
+    mainImage: '',
+    categories: [],
+    body: '',
+    authorImage: '',
+    username: '',
+    about: '',
+    postedAt: ''
+}
+
+const post = ({post = fakePost}) => {
 
     const {tittle, mainImage, categories, body, authorImage, username, about, publishedAt, postedAt} = post
 
-    console.log(PostComponents)
     return (
         <>
             {post && <article className={'post-container-column'}>
@@ -52,22 +60,20 @@ const post = ({post = undefined}) => {
                 </div>
 
                 <PortableText value={body} components={PostComponents}/>
-                <Image
+                <img
                     className={'post-image'}
                     alt={'img'}
                     src={urlFor(mainImage).width(600).url()}
-                    layout={'fill'}
                 />
 
                 <ColoredLine/>
 
                 <div className={'info-container'}>
                     <div className={'author-container'}>
-                        <Image
+                        <img
                             className={'avatar'}
                             alt={username + 'avatar'}
                             src={urlFor(authorImage).url()}
-                            layout={'fill'}
                         />
                         <h3>Author: <strong>{username}</strong></h3>
                         <p>About author</p>
@@ -105,7 +111,7 @@ export async function getStaticPaths() {
 
     return {
         paths: paths.map((slug) => ({params: {slug}})),
-        fallback: true
+        fallback: false
     }
 }
 
