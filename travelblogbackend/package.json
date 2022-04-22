@@ -8,7 +8,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
-    "build": "CI=false && sanity build"
+    "test": "sanity check",
+    "build": "CI=false && sanity build public -y"
   },
   "keywords": [
     "sanity"
@@ -27,5 +28,8 @@
     "react-dom": "^17.0",
     "sanity-plugin-leaflet-input": "^1.0.1",
     "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "@sanity/cli": "^2.29.5"
   }
 }
