@@ -1,25 +1,27 @@
 import groq from 'groq'
-import Tag from '../../components/Tag'
+import Tag from '../Tag'
 import {PortableText} from '@portabletext/react'
 import {urlFor} from '../../lib/sanity'
 import {getClient} from '../../lib/sanity.server'
-import Map from '../../components/Map'
+import Map from '../Map'
+import Image from 'next/image'
 
 const PostComponents = {
     types: {
-        image: ({value}) => {
+        image: ({value = undefined}) => {
             return (
-                <img
+                <Image
                     className={'post-image'}
                     alt={value.alt || ' '}
                     src={urlFor(value).width(600).url()}
+                    layout={'fill'}
                 />
             )
         }
     }
 }
 
-const ColoredLine = ({ color }) => (
+const ColoredLine = ({ color = undefined }) => (
     <hr
         style={{
             color: color,
@@ -29,7 +31,7 @@ const ColoredLine = ({ color }) => (
     />
 );
 
-const post = ({post}) => {
+const post = ({post = undefined}) => {
 
     const {tittle, mainImage, categories, body, authorImage, username, about, publishedAt, postedAt} = post
 
@@ -50,20 +52,22 @@ const post = ({post}) => {
                 </div>
 
                 <PortableText value={body} components={PostComponents}/>
-                <img
+                <Image
                     className={'post-image'}
                     alt={'img'}
                     src={urlFor(mainImage).width(600).url()}
+                    layout={'fill'}
                 />
 
                 <ColoredLine/>
 
                 <div className={'info-container'}>
                     <div className={'author-container'}>
-                        <img
+                        <Image
                             className={'avatar'}
                             alt={username + 'avatar'}
                             src={urlFor(authorImage).url()}
+                            layout={'fill'}
                         />
                         <h3>Author: <strong>{username}</strong></h3>
                         <p>About author</p>

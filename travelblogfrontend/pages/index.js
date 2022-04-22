@@ -1,8 +1,8 @@
-import {getClient} from "../lib/sanity.server"
-import groq from "groq"
-import Head from "next/head"
-import Link from "next/link"
-import Card from "../components/Card"
+import {getClient} from '../lib/sanity.server'
+import groq from 'groq'
+import Head from 'next/head'
+import Link from 'next/link'
+import Card from '../components/Card'
 
 const Home = ({posts}) => {
 
@@ -18,7 +18,7 @@ const Home = ({posts}) => {
                 {posts?.map(post => (
                     <Link
                         key={post.id}
-                        href="/posts/[slug]"
+                        href="/travelblogfrontend/components/posts/[slug]"
                         as={`/posts/${post.slug.current}`}
                         passHref
                     >

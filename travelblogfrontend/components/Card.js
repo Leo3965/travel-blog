@@ -1,6 +1,7 @@
 import {urlFor} from '../lib/sanity'
 import Tag from './Tag'
 import {forwardRef} from 'react'
+import Image from 'next/image'
 
 const Card = forwardRef(({onClick, href, post}, ref) => {
 
@@ -11,17 +12,18 @@ const Card = forwardRef(({onClick, href, post}, ref) => {
             <h2>{tittle}</h2>
             <p>Published on: {new Date(publishedAt).toDateString()}</p>
 
-            <img
+            <Image
                 className="main-image"
                 alt={tittle + 'image'}
                 src={urlFor(mainImage).width(600).url()}
+                layout={'fill'}
             />
 
             <hr/>
 
             <div className="info-container">
                 <p>Posted by: {username}</p>
-                <img
+                <Image
                     className={'avatar'}
                     alt={username + 'avatar'}
                     src={urlFor(authorImage).url()}
@@ -38,6 +40,8 @@ const Card = forwardRef(({onClick, href, post}, ref) => {
         </div>
     )
 })
+
+Card.displayName = 'Card'
 
 export default Card
 
