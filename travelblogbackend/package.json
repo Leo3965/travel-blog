@@ -9,7 +9,7 @@
   "scripts": {
     "start": "sanity start",
     "test": "sanity check",
-    "build": "CI=false && sanity build public -y"
+    "build": "CI=false && sanity build dist -y"
   },
   "keywords": [
     "sanity"
