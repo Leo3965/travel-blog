@@ -36,3 +36,4 @@ yarn-error.log*
 /travelblogbackend/node_modules/
 /travelblogfrontend/.next/
 /travelblogbackend/.idea/
+/travelblogbackend/dist/
